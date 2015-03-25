@@ -1,0 +1,7 @@
+{
+  "name": "angular-dolphin",
+  "version": "1.0.0",
+  "main": "./angular-dolphin.js",
+  "ignore": [],
+  "dependencies": {}
+}

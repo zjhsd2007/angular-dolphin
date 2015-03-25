@@ -1,0 +1,20 @@
+{
+  "name": "angular-dolphin",
+  "version": "1.0.0",
+  "description": "angular plugin",
+  "main": "angular-dolphin.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@172.18.7.20:zhangjunhui/angular-dolphin.git"
+  },
+  "keywords": [
+    "angular",
+    "angular plugin",
+    "browser"
+  ],
+  "author": "zhangjunhui",
+  "license": "MIT"
+}
