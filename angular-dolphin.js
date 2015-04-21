@@ -253,7 +253,7 @@ angular.module('dp.validator',['ng'])
                     }
                 }
             }
-        }
+        };
     }])
     .directive('dpFormSubmit',['$parse',function($parse){
         return {
@@ -264,7 +264,7 @@ angular.module('dp.validator',['ng'])
                     ctrl.doValidate(dpSubmit(scope));
                 });
             }
-        }
+        };
     }])
     .directive('dpRepeat',[function(){
         return {
@@ -281,7 +281,7 @@ angular.module('dp.validator',['ng'])
                     return value;
                 });
             }
-        }
+        };
     }])
     .directive('dpBackCheck',['$timeout','$http','dpValidator',function($timeout,$http,dpValidator){
         return {
@@ -529,7 +529,7 @@ angular.module('dp.widgets',[])
                     $els = angular.element('dp-sort-field[multi='+ multi +']');
                     $els.each(function(){
                         $el = angular.element(this);
-                        sort.push({'sorgBy':$el.attr('sort-by'),'sort':$el.attr('sort')})
+                        sort.push({'sorgBy':$el.attr('sort-by'),'sort':$el.attr('sort')});
                     });
                 }
                 tmp = _.indexBy(sort,'sorgBy');
@@ -623,7 +623,7 @@ angular.module('dp.widgets',[])
             link:function($scope, $element, $attrs){
                 //支持多种格式用|分隔即可
                 var fileTypeReg = new RegExp('\\.('+$attrs['fileType'].toLowerCase().replace(/\s+/g,'')+')$'),
-                    quantity = $attrs['quantity'],
+                    quantity = $attrs['fileQuantity'],
                     size = $attrs['fileSize'],
                     fileSize = parseFloat(size) * 1024 * (/[mM]$/.test(size) ? 1024 : 1) || 1*1024*1024,
                     $fileInput = $element.find('input');
@@ -642,12 +642,29 @@ angular.module('dp.widgets',[])
                         this.value = '';
                         file = this.files[0];
                         throw new Error('文件格式不对，或文件大小超出限制');
-                        return;
                     }
 
                     $scope.files.push(file);
                     $scope.$apply();
                 });
             }
-        }
+        };
+    }])
+    .directive('dpCheckboxGroup',[function(){
+        return {
+            restrict: 'E',
+            scope:{
+                checked:'=ngModel',
+                items:'=origin'
+            },
+            template:'<label ng-repeat="item in items" class="checkbox-inline"><input type="checkbox" value={{item.value}} ng-checked="checked.indexOf(item.value) !== -1" ng-click="toggleChecked(item.value)" />{{item.display}}</label>',
+            link:function($scope,$el,$attrs){
+
+                $scope.toggleChecked = function(val){
+                    var index = $scope.checked.indexOf(val);
+                    index > -1 ? $scope.checked.splice(index,1) : $scope.checked.push(val);
+                };
+
+            }
+        };
     }]);
