@@ -659,7 +659,6 @@ angular.module('dp.widgets',[])
             },
             template:'<label ng-repeat="item in items" class="checkbox-inline"><input type="checkbox" value={{item.value}} ng-checked="checked.indexOf(item.value) !== -1" ng-click="toggleChecked(item.value)" />{{item.display}}</label>',
             link:function($scope,$el,$attrs){
-
                 $scope.toggleChecked = function(val){
                     var index = $scope.checked.indexOf(val);
                     index > -1 ? $scope.checked.splice(index,1) : $scope.checked.push(val);
