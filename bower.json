@@ -10,7 +10,7 @@
     "angular plugin",
     "browser"
   ],
-  "authors"["zhangjunhui <flyinksy@gmail.com>"],
+  "authors":["zhangjunhui <flyinksy@gmail.com>"],
   "repository": {
     "type": "git",
     "url": "https://github.com/zjhsd2007/angular-dolphin.git"
