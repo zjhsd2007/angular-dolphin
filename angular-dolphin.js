@@ -255,6 +255,23 @@ angular.module('dp.validator',['ng'])
             }
         };
     }])
+    /*用于将动态添加到表单中的字段的name属性绑定到scope.formName上*/
+    .directive('dpDynamicFieldName',function(){
+        return {
+            restrict:'A',
+            priority:0,
+            require:'^form',
+            compile:function(){
+                return {
+                    pre:function(scope,iElement,iAttrs,ctrl){
+                        var name = iAttrs['name'], parentForm = iElement.parent().controller('form');
+                        ctrl.$name = name;
+                        parentForm[ctrl.$name] = ctrl;
+                    }
+                }
+            }
+        }
+    })
     .directive('dpFormSubmit',['$parse',function($parse){
         return {
             require:'^dpFormValidator',
