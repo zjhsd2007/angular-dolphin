@@ -683,4 +683,4 @@ angular.module('dp.widgets',[])
 
             }
         };
-    }]);
+    }]); 
